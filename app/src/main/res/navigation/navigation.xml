@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/getAllFragment">
+
+    <fragment
+        android:id="@+id/getAllFragment"
+        android:name="com.ydh.photo.view.fragment.GetAllFragment"
+        android:label="fragment_get_all"
+        tools:layout="@layout/fragment_get_all" >
+        <action
+            android:id="@+id/action_getAllFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:popUpTo="@id/getAllFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.ydh.photo.view.fragment.AddFragment"
+        android:label="fragment_add"
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="photo"
+            app:argType="com.ydh.photo.model.PhotoModel"
+            app:nullable="true" />
+        <argument
+            android:name="status"
+            app:argType="string" />
+    </fragment>
+</navigation>
