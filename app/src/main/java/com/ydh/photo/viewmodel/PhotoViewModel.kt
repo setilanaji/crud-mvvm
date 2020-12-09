@@ -76,11 +76,3 @@ class PhotoViewModel(
     }
 
 }
-
-class PhotoViewModelFactory(
-    private val repository: PhotoRemoteRepository,
-) : ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return PhotoViewModel(repository) as T
-    }
-}

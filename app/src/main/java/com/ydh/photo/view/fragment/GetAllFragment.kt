@@ -6,15 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.findNavController
-import com.ydh.photo.data.PhotoClient
-import com.ydh.photo.data.repository.PhotoRemoteRepositoryImpl
 import com.ydh.photo.databinding.FragmentGetAllBinding
 import com.ydh.photo.model.PhotoModel
 import com.ydh.photo.view.adapter.PhotoAdapter
 import com.ydh.photo.viewmodel.PhotoViewModel
-import com.ydh.photo.viewmodel.PhotoViewModelFactory
 import com.ydh.photo.viewmodel.state.PhotoState
 
 
@@ -22,12 +19,7 @@ class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
 
     private lateinit var binding: FragmentGetAllBinding
     private val adapter by lazy { PhotoAdapter(requireActivity(), this) }
-    private val service by lazy { PhotoClient.photoService }
-    private val repository by lazy { PhotoRemoteRepositoryImpl(service) }
-    private val viewModelFactory by lazy {
-        PhotoViewModelFactory(repository)
-    }
-    private val viewModel by viewModels<PhotoViewModel> { viewModelFactory }
+    private val viewModel by viewModel<PhotoViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
