@@ -46,9 +46,8 @@ class PhotoAdapter(
             fun loadPhotoImg(view: ImageView, url: String?) {
                 var imgUrl =  "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
 
-                if (imgUrl.isNullOrEmpty()) {
-                    imgUrl =
-                        "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
+                if (!url.isNullOrEmpty()) {
+                    imgUrl = url
                 }
                 Glide
                     .with(view.context)

@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.ydh.photo.*
 import com.ydh.photo.data.PhotoClient
 import com.ydh.photo.data.repository.PhotoRemoteRepositoryImpl
 import com.ydh.photo.data.request.PhotoRequest
 import com.ydh.photo.databinding.FragmentAddBinding
-import com.ydh.photo.viewmodel.AddViewModel
-import com.ydh.photo.viewmodel.AddViewModelFactory
-import com.ydh.photo.viewmodel.state.AddState
+import com.ydh.photo.viewmodel.PhotoViewModel
+import com.ydh.photo.viewmodel.PhotoViewModelFactory
+import com.ydh.photo.viewmodel.state.PhotoState
 
 class AddFragment : Fragment() {
 
@@ -23,9 +22,9 @@ class AddFragment : Fragment() {
     private val service by lazy { PhotoClient.photoService }
     private val repository by lazy { PhotoRemoteRepositoryImpl(service) }
     private val viewModelFactory by lazy {
-        AddViewModelFactory(repository)
+        PhotoViewModelFactory(repository)
     }
-    private val viewModel by viewModels<AddViewModel> { viewModelFactory }
+    private val viewModel by viewModels<PhotoViewModel> { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,14 +62,14 @@ class AddFragment : Fragment() {
     private fun setObserver(){
         viewModel.state.observe(viewLifecycleOwner){ func ->
             when(func){
-                is AddState.SuccessAddState -> {
+                is PhotoState.SuccessAddState -> {
                     Toast.makeText(requireContext(), "your new id is ${func.id}", Toast.LENGTH_SHORT).show()
                 }
-                is AddState.SuccessUpdateState -> {
+                is PhotoState.SuccessUpdateState -> {
                     Toast.makeText(requireContext(), "your photo with id: ${func.id} is updated", Toast.LENGTH_SHORT).show()
                 }
-                is AddState.Loading -> println(func.message)
-                is AddState.Error -> println(func.exception.toString())
+                is PhotoState.Loading -> println(func.message)
+                is PhotoState.Error -> println(func.exception.toString())
                 else -> println("error")
             }
         }

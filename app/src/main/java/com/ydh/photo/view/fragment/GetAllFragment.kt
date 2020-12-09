@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ydh.photo.*
 import com.ydh.photo.data.PhotoClient
 import com.ydh.photo.data.repository.PhotoRemoteRepositoryImpl
 import com.ydh.photo.databinding.FragmentGetAllBinding
 import com.ydh.photo.model.PhotoModel
 import com.ydh.photo.view.adapter.PhotoAdapter
-import com.ydh.photo.viewmodel.GetAllViewModel
-import com.ydh.photo.viewmodel.GetAllViewModelFactory
-import com.ydh.photo.viewmodel.state.GetAllState
+import com.ydh.photo.viewmodel.PhotoViewModel
+import com.ydh.photo.viewmodel.PhotoViewModelFactory
+import com.ydh.photo.viewmodel.state.PhotoState
 
 
 class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
@@ -26,9 +25,9 @@ class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
     private val service by lazy { PhotoClient.photoService }
     private val repository by lazy { PhotoRemoteRepositoryImpl(service) }
     private val viewModelFactory by lazy {
-        GetAllViewModelFactory(repository)
+        PhotoViewModelFactory(repository)
     }
-    private val viewModel by viewModels<GetAllViewModel> { viewModelFactory }
+    private val viewModel by viewModels<PhotoViewModel> { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,14 +71,14 @@ class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
     private fun setObserver(){
         viewModel.state.observe(viewLifecycleOwner){ func ->
             when(func){
-                is GetAllState.SuccessGetAllPhoto -> {
+                is PhotoState.SuccessGetAllPhoto -> {
                     adapter.list = func.list.toMutableList()
                 }
-                is GetAllState.SuccessDeletePhoto -> {
+                is PhotoState.SuccessDeletePhoto -> {
                     Toast.makeText(requireContext(), func.message, Toast.LENGTH_SHORT).show()
                 }
-                is GetAllState.Loading -> println(func.message)
-                is GetAllState.Error -> println(func.exception.toString())
+                is PhotoState.Loading -> println(func.message)
+                is PhotoState.Error -> println(func.exception.toString())
                 else -> println("error")
             }
         }
