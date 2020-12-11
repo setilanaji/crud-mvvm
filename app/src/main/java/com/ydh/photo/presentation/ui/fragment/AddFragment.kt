@@ -1,4 +1,4 @@
-package com.ydh.photo.view.fragment
+package com.ydh.photo.presentation.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.ydh.photo.data.request.PhotoRequest
+import com.ydh.photo.data.payload.request.PhotoRequest
 import com.ydh.photo.databinding.FragmentAddBinding
-import com.ydh.photo.viewmodel.PhotoViewModel
-import com.ydh.photo.viewmodel.state.PhotoState
+import com.ydh.photo.domain.PhotoDomain
+import com.ydh.photo.presentation.ui.viewmodel.PhotoViewModel
+import com.ydh.photo.presentation.ui.state.PhotoState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddFragment : Fragment() {
@@ -43,7 +44,7 @@ class AddFragment : Fragment() {
             btAdd.setOnClickListener {
 
                 if (status == "add"){
-                    viewModel.insertPhoto(PhotoRequest(title = etTitle.text.toString()))
+                    viewModel.insertPhoto(PhotoDomain(title = etTitle.text.toString()))
                 } else if (status == "update"){
                     viewModel.updatePhoto(binding.photo!!)
                 }

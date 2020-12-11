@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/getAllFragment"
-        android:name="com.ydh.photo.view.fragment.GetAllFragment"
+        android:name="com.ydh.photo.presentation.ui.fragment.GetAllFragment"
         android:label="fragment_get_all"
         tools:layout="@layout/fragment_get_all" >
         <action
@@ -17,12 +17,12 @@
     </fragment>
     <fragment
         android:id="@+id/addFragment"
-        android:name="com.ydh.photo.view.fragment.AddFragment"
+        android:name="com.ydh.photo.presentation.ui.fragment.AddFragment"
         android:label="fragment_add"
         tools:layout="@layout/fragment_add" >
         <argument
             android:name="photo"
-            app:argType="com.ydh.photo.model.PhotoModel"
+            app:argType="com.ydh.photo.domain.PhotoDomain"
             app:nullable="true" />
         <argument
             android:name="status"

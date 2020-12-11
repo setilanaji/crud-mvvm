@@ -1,8 +1,8 @@
-package com.ydh.photo.data.service
+package com.ydh.photo.presentation.infrastructure.api.service
 
-import com.ydh.photo.data.request.PhotoRequest
-import com.ydh.photo.data.response.AddUpdateResponse
-import com.ydh.photo.data.response.PhotoResponse
+import com.ydh.photo.data.payload.request.PhotoRequest
+import com.ydh.photo.data.payload.response.AddUpdateResponse
+import com.ydh.photo.data.payload.response.PhotoResponse
 import retrofit2.http.*
 
 interface PhotoService {

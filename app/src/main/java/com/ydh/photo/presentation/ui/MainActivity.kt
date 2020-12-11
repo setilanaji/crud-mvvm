@@ -1,4 +1,4 @@
-package com.ydh.photo.view
+package com.ydh.photo.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -8,7 +8,7 @@
     <data>
         <variable
             name="photo"
-            type="com.ydh.photo.model.PhotoModel" />
+            type="com.ydh.photo.domain.PhotoDomain" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

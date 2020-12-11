@@ -1,4 +1,4 @@
-package com.ydh.photo.view.adapter
+package com.ydh.photo.presentation.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,16 +8,16 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ydh.photo.model.PhotoModel
 import com.ydh.photo.R
 import com.ydh.photo.databinding.ItemPhotosBinding
+import com.ydh.photo.domain.PhotoDomain
 
 class PhotoAdapter(
     private val context: Context,
     private val listener: PhotoItemListener
 ) : RecyclerView.Adapter<PhotoAdapter.ViewHolder>() {
 
-    var list = mutableListOf<PhotoModel>()
+    var list = mutableListOf<PhotoDomain>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -25,8 +25,8 @@ class PhotoAdapter(
 
 
     interface PhotoItemListener {
-        fun onClick(model: PhotoModel)
-        fun onClickDelete(model: PhotoModel)
+        fun onClick(domain: PhotoDomain)
+        fun onClickDelete(domain: PhotoDomain)
     }
 
 

@@ -1,7 +1,6 @@
-package com.ydh.photo.data.response
+package com.ydh.photo.data.payload.response
 
 import com.google.gson.annotations.SerializedName
-import com.ydh.photo.model.PhotoModel
 
 data class PhotoResponse(
     @SerializedName("id")
@@ -16,4 +15,3 @@ data class PhotoResponse(
     val thumbnailUrl: String
 )
 
-fun PhotoResponse.toModel() = PhotoModel(id, albumId, title, url, thumbnailUrl)

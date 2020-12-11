@@ -1,4 +1,4 @@
-package com.ydh.photo.data.response
+package com.ydh.photo.data.payload.response
 
 import com.google.gson.annotations.SerializedName
 

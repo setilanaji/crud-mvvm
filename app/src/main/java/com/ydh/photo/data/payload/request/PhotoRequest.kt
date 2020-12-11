@@ -1,4 +1,4 @@
-package com.ydh.photo.data.request
+package com.ydh.photo.data.payload.request
 
 data class PhotoRequest(
     val albumId: Int = 1,

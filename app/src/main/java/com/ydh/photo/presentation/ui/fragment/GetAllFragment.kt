@@ -1,4 +1,4 @@
-package com.ydh.photo.view.fragment
+package com.ydh.photo.presentation.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,10 +9,10 @@ import android.widget.Toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import androidx.navigation.fragment.findNavController
 import com.ydh.photo.databinding.FragmentGetAllBinding
-import com.ydh.photo.model.PhotoModel
-import com.ydh.photo.view.adapter.PhotoAdapter
-import com.ydh.photo.viewmodel.PhotoViewModel
-import com.ydh.photo.viewmodel.state.PhotoState
+import com.ydh.photo.domain.PhotoDomain
+import com.ydh.photo.presentation.ui.adapter.PhotoAdapter
+import com.ydh.photo.presentation.ui.viewmodel.PhotoViewModel
+import com.ydh.photo.presentation.ui.state.PhotoState
 
 
 class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
@@ -35,14 +35,14 @@ class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
         return binding.root
     }
 
-    override fun onClick(model: PhotoModel) {
+    override fun onClick(domain: PhotoDomain) {
 
-        val action = GetAllFragmentDirections.actionGetAllFragmentToAddFragment(model, "update")
+        val action = GetAllFragmentDirections.actionGetAllFragmentToAddFragment(domain, "update")
         findNavController().navigate(action)
     }
 
-    override fun onClickDelete(model: PhotoModel) {
-        viewModel.deletePhoto(model.id)
+    override fun onClickDelete(domain: PhotoDomain) {
+        viewModel.deletePhoto(domain)
     }
 
     private fun setView(){
@@ -75,7 +75,11 @@ class GetAllFragment : Fragment() , PhotoAdapter.PhotoItemListener {
             }
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
 
+        viewModel.onDestroy()
+    }
 
 
 

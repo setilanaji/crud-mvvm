@@ -8,14 +8,14 @@
     <data>
         <variable
             name="photo"
-            type="com.ydh.photo.model.PhotoModel" />
+            type="com.ydh.photo.domain.PhotoDomain" />
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragment.AddFragment">
+        tools:context=".presentation.ui.fragment.AddFragment">
 
 
         <EditText
